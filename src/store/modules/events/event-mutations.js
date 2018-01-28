@@ -16,32 +16,32 @@ const eventMutations = {
   },
   [GET_ALL_EVENTS](state) {
     state.loading = true
-    state.error = false
+    state.error = null
   },
   [GET_ALL_EVENTS_SUCCEEDED](state, payload) {
     state.loading = false
     state.events = payload
   },
-  [GET_ALL_EVENTS_FAILED](state) {
+  [GET_ALL_EVENTS_FAILED](state, err) {
     state.loading = false
     state.events = []
-    state.error = 'Unable to get events'
+    state.error = err
   },
   [GET_EVENT_DETAILS](state, { event }) {
     state.event = event
   },
   [ADD_NEW_EVENT](state) {
     state.loading = true
-    state.error = false
+    state.error = null
   },
   [ADD_NEW_EVENT_SUCCEEDED](state, payload) {
     state.loading = false
     state.event = payload
   },
-  [ADD_NEW_EVENT_FAILED](state) {
+  [ADD_NEW_EVENT_FAILED](state, err) {
     state.loading = false
     state.event = {}
-    state.error = 'Unable to save event'
+    state.error = err
   },
 
   [UPDATE_EVENT](state, { id }) { }

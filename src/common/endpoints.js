@@ -7,7 +7,7 @@ const endpoints = {
 }
 
 function getEndpoints() {
-  return reduce(endpoints, (reduce, value, key) => ({ [key]: `${local}${value}` }), {})
+  return reduce(endpoints, (reduced, value, key) => ({ ...reduced, [key]: `${local}${value}` }), {})
 }
 
 export default {

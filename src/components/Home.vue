@@ -30,18 +30,18 @@ export default {
 	created() {
     this.getAllEvents()
   },
-  methods: {
-		...mapActions(['getAllEvents']),
-  },
 	computed: {
 		...mapGetters({
 			loading: 'isLoading',
 			events: 'getEvents',
 		}),
 		hasEvents() {
-			return !this.loading && this.events.length !== 0
+			return this.events.length !== 0
 		},
 	},
+  methods: {
+		...mapActions(['getAllEvents']),
+  },
 }
 </script>
 

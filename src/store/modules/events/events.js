@@ -5,7 +5,7 @@ const state = {
   loading: true,
   events: [],
   event: {},
-  error: ''
+  error: null
 }
 
 const getters = {
