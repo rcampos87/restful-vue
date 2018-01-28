@@ -15,57 +15,50 @@
 </template>
 
 <script>
-import Axios from '../common/axios'
+import { mapGetters, mapActions } from 'vuex'
 import Loader from './shared/loader/Loader'
 import EventList from './events/EventList'
 
 export default {
-  name: 'home',
-  data() {
-    return {
-      Axios: new Axios(),
-      header: 'Events',
-      events: [],
-      loading: true,
-    }
+	name: 'home',
+	data() {
+		return {
+			header: 'Events',
+		}
+	},
+	components: { Loader, EventList },
+	created() {
+    this.getAllEvents()
   },
-  components: { Loader, EventList },
-  created() {
-    this.Axios
-      .doGet('http://localhost:3000/events')
-      .then(res => {
-        this.loading = false
-        if (res.length === 0) {
-          this.$router.push('/new')
-        }
-      })
-      .catch(err => {
-        this.loading = false
-        this.$router.push('/new')
-      })
-  },
-  computed: {
-    hasEvents() {
-      return !this.loading && this.events.length !== 0
-    },
+	computed: {
+		...mapGetters({
+			loading: 'isLoading',
+			events: 'getEvents',
+		}),
+		hasEvents() {
+			return this.events.length !== 0
+		},
+	},
+  methods: {
+		...mapActions(['getAllEvents']),
   },
 }
 </script>
 
 <style lang="scss">
 .home-wrapper {
-  display: flex;
-  flex: 1;
-  
-  > .preloader-wrapper {
-    margin: auto auto;    
-  }
+	display: flex;
+	flex: 1;
 
-  .events-wrapper {
-    margin-top: 30px;
-    width: 100%;
-  }
-}  
+	> .preloader-wrapper {
+		margin: auto auto;
+	}
+
+	.events-wrapper {
+		margin-top: 30px;
+		width: 100%;
+	}
+}
 </style>
 
 
