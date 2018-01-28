@@ -11,20 +11,20 @@
 
 ``` bash
 # install dependencies
-npm install
+yarn install
 
 # start dev and start server 
-npm start 
+yarn start 
 
 # serve with hot reload at localhost:8080
-npm run dev
+yarn run dev
 
 # start server at localhost:3000
-npm run server
+yarn run server
 
 # build for production with minification
-npm run build
+yarn run build
 
 # build for production and view the bundle analyzer report
-npm run build --report
+yarn run build --report
 ```

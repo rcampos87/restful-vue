@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "yarn dev & yarn server",
-    "lint": "eslint --ext .js,.vue src",
     "server": "nodemon server.js",
     "build": "node build/build.js"
   },
@@ -64,6 +63,10 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0"
+  },
+  "engines":{
+    "node": ">9.0.0",
+    "yarn": ">1.0.0"
   },
   "browserslist": [
     "> 1%",
