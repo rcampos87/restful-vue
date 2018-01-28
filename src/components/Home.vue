@@ -35,12 +35,12 @@ export default {
 			loading: 'isLoading',
 			events: 'getEvents',
 		}),
-		hasEvents() {
-			return this.events.length !== 0
-		},
 	},
   methods: {
 		...mapActions(['getAllEvents']),
+		hasEvents() {
+			return this.events.length !== 0
+		},
   },
 }
 </script>
