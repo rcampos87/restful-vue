@@ -5,7 +5,7 @@ import endpoints from '../../../common/endpoints';
 
 const axios = new Axios();
 
-export function getAllEvents({ commit }) {
+function getAllEvents({ commit }) {
   axios
     .doGet(endpoints.api.events)
     .then(res => {
@@ -19,6 +19,19 @@ export function getAllEvents({ commit }) {
     })
 }
 
-export function getEventDetails({ commit }) {
+function getEventDetails({ commit }) {
 
+}
+
+function addEvent({ commit }, event) {
+  axios.doPost(endpoints.api.addEvent, event)
+    .then(res => {
+      router.push('/')
+    })
+}
+
+export default {
+  getAllEvents,
+  getEventDetails,
+  addEvent
 }

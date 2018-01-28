@@ -2,7 +2,8 @@ import { reduce } from 'lodash-es'
 const local = 'http://localhost:3000'
 
 const endpoints = {
-  events: '/events'
+  events: '/events',
+  addEvent: '/event/create'
 }
 
 function getEndpoints() {

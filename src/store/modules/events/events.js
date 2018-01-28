@@ -1,21 +1,22 @@
 import eventMutations from './event-mutations'
-import { getAllEvents, getEventDetails } from './event-actions'
+import eventActions from './event-actions'
 
 const state = {
   loading: true,
   events: [],
-  event: {}
+  event: {},
+  error: ''
 }
 
 const getters = {
   isLoading: state => state.loading,
   getEvents: state => state.events,
   getEvent: state => state.event,
+  hasError: state => !!state.error && state.error
 }
 
 const actions = {
-  getAllEvents,
-  getEventDetails
+  ...eventActions
 }
 
 const mutations = {
