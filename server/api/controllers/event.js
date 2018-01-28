@@ -9,18 +9,17 @@ exports.get_event_by_id = (req, res, next) => {
 }
 
 exports.post_new_event = (req, res, next) => {
-  console.log(req.body)
   const eventPosted = {
     name: req.body.name,
     location: req.body.location,
-    date: req.body.date,
-    time: req.body.time,
+    description: req.body.description,
+    _id: mongoose.Types.ObjectId()
   }
 
-  const event = new Event()
+  const event = new Event(eventPosted)
 
   event
-    .save(eventPosted)
+    .save()
     .then(result => {
       res.status(201).json(result)
     })

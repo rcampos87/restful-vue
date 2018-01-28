@@ -2,14 +2,18 @@
   <div class="container">
     <form class="col s12" v-on:submit.prevent="submitEvent()">
       <div class="row">
-        <input-field label="Name" className="col s12" inputClass="validate" id="event_name" placeholder="event name" v-model="name"/>
+        <input-field label="Name" className="col s12" inputClass="validate" id="event_name" placeholder="event name" v-model.trim="name"/>
       </div>
       <div class="row">
-        <input-field label="Location" className="col s12" inputClass="validate" id="event_location" placeholder="event location" v-model="location"/>
+        <input-field label="Location" className="col s12" inputClass="validate" id="event_location" placeholder="event location" v-model.trim="location"/>
       </div>
       <div class="row">
-        <input-field label="Description" className="col s12" inputClass="validate" id="event_description" placeholder="event description" v-model="description"/>
+        <input-field label="Description" className="col s12" inputClass="validate" id="event_description" placeholder="event description" v-model.trim="description"/>
       </div>
+      <button class="btn waves-effect waves-light blue" type="submit" name="event_submit">
+        Submit
+        <i class="material-icons right">send</i>
+      </button>
     </form>
   </div>
 </template>
@@ -32,8 +36,8 @@ export default {
 		...mapActions(['addEvent']),
 		submitEvent() {
       const { name, location, description } = this
-      
-      this.addEvent({ name, location, description })
+      const data = { name, location, description }
+      this.addEvent(data)
 		},
 	},
 }
