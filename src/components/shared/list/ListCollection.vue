@@ -6,7 +6,7 @@
     <li v-for="item in listItems" class="collection-item" v-bind:key="item._id">
       <div>
         {{ item.name }}
-        <router-link to="getLink(item._id)" class="secondary-content">
+        <router-link v-bind:to="getLink(item._id)" class="secondary-content">
           <i class="material-icons">chevron_right</i>
         </router-link>
       </div>
@@ -28,7 +28,7 @@ export default {
     },
     baseLink: {
       type: String,
-      required: true
+      default: ''
     }
   },
   methods: {

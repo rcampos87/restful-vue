@@ -1,5 +1,5 @@
 <template>
-  <list-collection v-bind:listHeader="header" v-bind:listItems="events" v-bind:baseLink="'/'"/>
+  <list-collection v-bind:listHeader="header" v-bind:listItems="events"/>
 </template>
 
 <script>
