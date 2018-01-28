@@ -2,6 +2,11 @@
 
 > A Vue, Express, and Nodejs Restful API app
 
+## Requirements
+- Yarn
+- Nodejs LTS
+- MongoDB
+
 ## Build Setup
 
 ``` bash

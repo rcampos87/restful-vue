@@ -4,10 +4,10 @@ const parser = require('body-parser')
 const mongoose = require('mongoose')
 const eventsRoute = require('./api/routes/events')
 const eventRoutes = require('./api/routes/event')
-
+const db = require('../dbConfig.json')
 const app = express()
 
-mongoose.connect('mongodb://localhost/restful-vue')
+mongoose.connect(db.path)
 
 app.use(logger('dev'))
 
