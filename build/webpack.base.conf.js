@@ -12,6 +12,7 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js',
+    vendor: ['materialize-css/dist/css/materialize.min.css', 'materialize-css/dist/js/materialize.min.js']
   },
   output: {
     path: config.build.assetsRoot,
