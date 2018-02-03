@@ -4,3 +4,5 @@ const endpoints = {
   events: `${local}/events`,
   event: id => `${local}/events/${id}`
 }
+
+export default endpoints

@@ -17,8 +17,9 @@ export default {
     return {
       header: 'Event Management',
       links: [
-        'Employees',
-        'Speakers'
+        '',
+      //  'Employees',
+      //  'Speakers'
       ]
     }
   }
