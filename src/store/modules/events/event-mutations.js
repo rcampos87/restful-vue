@@ -8,6 +8,8 @@ import {
   ADD_NEW_EVENT_SUCCEEDED,
   ADD_NEW_EVENT_FAILED,
   UPDATE_EVENT,
+  UPDATE_EVENT_FAILED,
+  UPDATE_EVENT_SUCCEEDED,
   GET_EVENT_DETAILS_SUCCEEDED,
   GET_EVENT_DETAILS_FAILED
 } from './event-mutation-types'
@@ -72,8 +74,17 @@ const eventMutations = {
     state.event = {}
     state.error = err.message
   },
-
-  [UPDATE_EVENT](state, { id }) { }
+  [UPDATE_EVENT](state) {
+    state.loading = true
+    state.error = null
+  },
+  [UPDATE_EVENT_SUCCEEDED](state, payload) {
+    state.loading = false
+  },
+  [UPDATE_EVENT_FAILED](state, err) {
+    state.loading = false
+    state.error = err.message
+  },
 }
 
 export default eventMutations

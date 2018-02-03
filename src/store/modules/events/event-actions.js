@@ -5,7 +5,15 @@ import {
   ADD_NEW_EVENT,
   ADD_NEW_EVENT_SUCCEEDED,
   ADD_NEW_EVENT_FAILED,
-  GET_EVENT_DETAILS
+  GET_EVENT_DETAILS,
+  GET_EVENT_DETAILS_FAILED,
+  GET_EVENT_DETAILS_SUCCEEDED,
+  UPDATE_EVENT,
+  UPDATE_EVENT_FAILED,
+  UPDATE_EVENT_SUCCEEDED,
+  DELETE_EVENT,
+  DELETE_EVENT_FAILED,
+  DELETE_EVENT_SUCCEEDED
 } from './event-mutation-types'
 import Axios from '../../../common/axios'
 import router from '../../../router'
@@ -29,20 +37,22 @@ function getAllEvents({ commit }) {
     })
 }
 
-function getEventDetails({ commit }) {
+function getEventDetails({ commit }, id) {
   commit(GET_EVENT_DETAILS)
-  axios
-    .doGet(endpoints.events)
+  return axios
+    .doGet(endpoints.event(id))
     .then(res => {
       commit(GET_EVENT_DETAILS_SUCCEEDED, res.payload)
+      return res.payload
     })
     .catch(err => {
       commit(GET_EVENT_DETAILS_FAILED, err.payload)
+      return err.payload
     })
 }
 
 function addEvent({ commit }, event) {
-  commit(ADD_NEW_EVENT, res)
+  commit(ADD_NEW_EVENT)
   axios.doPost(endpoints.event, event)
     .then(res => {
       commit(ADD_NEW_EVENT_SUCCEEDED, res.payload)
@@ -50,6 +60,18 @@ function addEvent({ commit }, event) {
     })
     .catch(err => {
       commit(ADD_NEW_EVENT_FAILED, err.payload)
+    })
+}
+
+function editEvent({ commit }, event) {
+  commit(UPDATE_EVENT)
+  axios.doPut(endpoints.event, event)
+    .then(res => {
+      commit(UPDATE_EVENT_SUCCEEDED, res.payload)
+      router.push('/')
+    })
+    .catch(err => {
+      commit(UPDATE_EVENT_FAILED, err.payload)
     })
 }
 

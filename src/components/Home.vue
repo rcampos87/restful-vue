@@ -6,7 +6,7 @@
         <event-list v-bind:header="header" v-bind:events="events"/>
         <div class="fixed-action-btn">
           <router-link to="/new" class="btn-floating btn-large red">
-            <i class="material-icons">create</i>
+            <i class="material-icons">add</i>
           </router-link>
         </div>
       </div>

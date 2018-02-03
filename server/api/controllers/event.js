@@ -14,8 +14,10 @@ exports.get_all_events = (req, res, next) => {
 
 exports.get_event = (req, res, next) => {
   Event.find({ _id: req.params.id })
-    .exec()
-    .then(doc => res.status(200).json(successResponse(doc)))
+    .then(doc => {
+      const result = doc[0]
+      res.status(200).json(successResponse(result))
+    })
     .catch(err =>
       res.status(500).json(errorResponse(err.message)),
     )
