@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
-import NewEvent from '@/components/events/NewEvent'
+import EventDetails from '@/components/events/EventDetails'
 
 Vue.use(Router)
 
@@ -15,7 +15,13 @@ export default new Router({
     {
       path: '/new',
       name: 'NewEvent',
-      component: NewEvent,
+      component: EventDetails,
+    },
+    {
+      path: '/:id',
+      name: 'EventDetails',
+      component: EventDetails,
+      props: true
     },
   ],
 })
