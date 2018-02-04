@@ -63,9 +63,9 @@ function addEvent({ commit }, event) {
     })
 }
 
-function editEvent({ commit }, event, id) {
+function editEvent({ commit }, event) {
   commit(UPDATE_EVENT)
-  axios.doPut(endpoints.event(id), event)
+  axios.doPut(endpoints.event(event.id), event)
     .then(res => {
       commit(UPDATE_EVENT_SUCCEEDED, res.payload)
       router.push('/')
@@ -75,7 +75,7 @@ function editEvent({ commit }, event, id) {
     })
 }
 
-function deleteEvent({ commit }, id) {
+function clearEvent({ commit }, id) {
   commit(DELETE_EVENT)
   axios.doDelete(endpoints.event(id))
     .then(res => {
@@ -92,5 +92,5 @@ export default {
   getEventDetails,
   addEvent,
   editEvent,
-  deleteEvent
+  clearEvent
 }
