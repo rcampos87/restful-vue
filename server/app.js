@@ -2,12 +2,11 @@ const express = require('express')
 const logger = require('morgan')
 const parser = require('body-parser')
 const mongoose = require('mongoose')
-const eventsRoute = require('./api/routes/events')
 const eventRoutes = require('./api/routes/event')
-
+const db = require('../dbConfig.json')
 const app = express()
 
-mongoose.connect('mongodb://localhost/restful-vue')
+mongoose.connect(db.path)
 
 app.use(logger('dev'))
 
@@ -22,15 +21,17 @@ app.use((req, res, next) => {
   )
 
   if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
+    res.header(
+      'Access-Control-Allow-Methods',
+      'GET, POST, PUT, PATCH, DELETE',
+    )
     return res.status(200).json({})
   }
 
   next()
 })
 
-app.use('/events', eventsRoute)
-app.use('/event', eventRoutes)
+app.use('/events', eventRoutes)
 
 app.use((req, res, next) => {
   const error = new Error('Not Found')

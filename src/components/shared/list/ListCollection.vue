@@ -3,12 +3,12 @@
     <li class="collection-header">
       <h4>{{listHeader}}</h4>
     </li>
-    <li v-for="item in listItems" class="collection-item" v-bind:key="item">
+    <li v-for="item in listItems" class="collection-item" v-bind:key="item._id">
       <div>
-        {{ item }}
-        <a href="#!" class="secondary-content">
-          <i class="material-icons">send</i>
-        </a>
+        {{ item.name }}
+        <router-link v-bind:to="getLink(item._id)" class="secondary-content">
+          <i class="material-icons">chevron_right</i>
+        </router-link>
       </div>
     </li>
   </ul>
@@ -17,6 +17,24 @@
 <script>
 export default {
   name: 'list-collection',
-  props: ['listHeader', 'listItems'],
+  props: {
+    listHeader: {
+      type: String,
+      required: true
+    },  
+    listItems: {
+      type: Array,
+      required: true
+    },
+    baseLink: {
+      type: String,
+      default: ''
+    }
+  },
+  methods: {
+    getLink(id) {
+      return `${this.baseLink}/${id}`;
+    }
+  }
 }
 </script>
