@@ -53,7 +53,7 @@ function getEventDetails({ commit }, id) {
 
 function addEvent({ commit }, event) {
   commit(ADD_NEW_EVENT)
-  axios.doPost(endpoints.event, event)
+  axios.doPost(endpoints.events, event)
     .then(res => {
       commit(ADD_NEW_EVENT_SUCCEEDED, res.payload)
       router.push('/')
@@ -63,9 +63,9 @@ function addEvent({ commit }, event) {
     })
 }
 
-function editEvent({ commit }, event) {
+function editEvent({ commit }, event, id) {
   commit(UPDATE_EVENT)
-  axios.doPut(endpoints.event, event)
+  axios.doPut(endpoints.event(id), event)
     .then(res => {
       commit(UPDATE_EVENT_SUCCEEDED, res.payload)
       router.push('/')
@@ -75,8 +75,22 @@ function editEvent({ commit }, event) {
     })
 }
 
+function deleteEvent({ commit }, id) {
+  commit(DELETE_EVENT)
+  axios.doDelete(endpoints.event(id))
+    .then(res => {
+      commit(DELETE_EVENT_SUCCEEDED, res.payload)
+      router.push('/')
+    })
+    .catch(err => {
+      commit(DELETE_EVENT_FAILED, err.payload)
+    })
+}
+
 export default {
   getAllEvents,
   getEventDetails,
-  addEvent
+  addEvent,
+  editEvent,
+  deleteEvent
 }

@@ -82,7 +82,7 @@ export default {
       if (this.isNew) {
         this.addEvent(data)
       } else {
-        this.editEvent(data)
+        this.editEvent(data, this.id)
       }
 		},
     setEdit() {

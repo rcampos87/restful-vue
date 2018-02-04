@@ -11,7 +11,10 @@ import {
   UPDATE_EVENT_FAILED,
   UPDATE_EVENT_SUCCEEDED,
   GET_EVENT_DETAILS_SUCCEEDED,
-  GET_EVENT_DETAILS_FAILED
+  GET_EVENT_DETAILS_FAILED,
+  DELETE_EVENT,
+  DELETE_EVENT_SUCCEEDED,
+  DELETE_EVENT_FAILED
 } from './event-mutation-types'
 
 const eventMutations = {
@@ -82,6 +85,17 @@ const eventMutations = {
     state.loading = false
   },
   [UPDATE_EVENT_FAILED](state, err) {
+    state.loading = false
+    state.error = err.message
+  },
+  [DELETE_EVENT](state) {
+    state.loading = true
+    state.error = null
+  },
+  [DELETE_EVENT_SUCCEEDED](state, payload) {
+    state.loading = false
+  },
+  [DELETE_EVENT_FAILED](state, err) {
     state.loading = false
     state.error = err.message
   },
